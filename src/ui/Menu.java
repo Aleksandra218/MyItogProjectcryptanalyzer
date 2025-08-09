@@ -37,7 +37,7 @@ public class Menu {
 
     public static void start() throws IOException {
         System.out.println("Добро пожаловать в криптоанализатор!\n");
-        System.out.print("Введите путь к файлу для чтения: ");
+        System.out.print("Введите путь к файлу для чтения: "); //без кавычек с обеих сторон иначе не примет валидатор
         fileManager.readLine(origFilePathRead = Validator.filePath());
 
         while (true) {
