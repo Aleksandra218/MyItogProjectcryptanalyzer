@@ -53,7 +53,7 @@ public class Menu {
             } else if (choice == 2) {
                 decodingText = caesarCipher.decrypt(encryptedText, randomKey, alphabet); //расшифровываем
                 System.out.println("Файл успешно расшифрован, введите путь к файлу для записи. Пример: C:/files/text.txt");
-                String pathWriteDecodText = Validator.filePath();
+                String pathWriteDecodText = Validator.filePath(); //путь к файлу для записи зашифрованного файла
                 fileManager.writeLine(decodingText, pathWriteDecodText);
                 System.out.println("Файл успешно записан!");
             } else if (choice == 3) {
