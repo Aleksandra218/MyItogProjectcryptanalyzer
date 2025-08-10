@@ -2,7 +2,7 @@ package core;
 
 public class CaesarCipher {
 
-
+    //декодируем текст
     public String decrypt(String text, int key, String alphabet) {
         StringBuilder decryptedText = new StringBuilder();
 
@@ -13,6 +13,7 @@ public class CaesarCipher {
             boolean wasUpper = Character.isUpperCase(encryptedChar);
             char lowerChar = Character.toLowerCase(encryptedChar);
 
+            //расшифровываем символ
             char decryptedChar = getDecodingChar(key, lowerChar, alphabet);
 
             // Восстанавливаем регистр, если исходный символ был заглавным
@@ -25,6 +26,7 @@ public class CaesarCipher {
         return decryptedText.toString();
     }
 
+    //декодируем символ
     private static char getDecodingChar(int key, char originChar, String alphabet) {
         int charEncryptPos = alphabet.indexOf(originChar);
 
@@ -39,6 +41,7 @@ public class CaesarCipher {
         return alphabet.charAt(origCharDecodingPos);
     }
 
+    //шифруем текст
     public String encrypt(String text, int key, String alphabet) {
         StringBuilder encryptedText = new StringBuilder();
 
@@ -65,6 +68,7 @@ public class CaesarCipher {
         return encryptedText.toString();
     }
 
+    //шифруем символ
     private static char getEncryptedChar(int key, char originChar, String alphabet) {
         int originPos = alphabet.indexOf(originChar);
 

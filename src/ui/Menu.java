@@ -13,13 +13,13 @@ public class Menu {
 
     private static CaesarCipher caesarCipher;
     private SecureRandom secureRandom;
-    private static FileManager fileManager;
+    private FileManager fileManager;
     private static int randomKey;
-    private static String encryptedText;
+    private String encryptedText;
     private static String origFilePathRead;
-    private static String decodingBrutForce;
-    private static String decodingText;
-    private static String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,:;?!() ";
+    private String decodingBrutForce;
+    private String decodingText;
+    private String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,:;?!() ";
 
 
     public Menu(CaesarCipher caesarCipher, SecureRandom secureRandom, FileManager fileManager, HacerBrutForce hacerBrutForce) {
@@ -31,20 +31,21 @@ public class Menu {
     }
 
 
-    public static String getOrigFilePathRead() {
+    public String getOrigFilePathRead() {
         return origFilePathRead;
     }
 
-    public static void start() throws IOException {
+
+    public void start() throws IOException {
         System.out.println("Добро пожаловать в криптоанализатор!\n");
-        System.out.print("Введите путь к файлу для чтения: ");
+        System.out.print("Введите путь к файлу для чтения: "); //путь без кавычек с обеих сторон иначе валидатор не примет
         fileManager.readLine(origFilePathRead = Validator.filePath());
 
         while (true) {
             outputMenu();
             int choice = Validator.choiceMenu();
             if (choice == 1) {
-                encryptedText = caesarCipher.encrypt(FileManager.getTextFileRead(), randomKey, alphabet);
+                encryptedText = caesarCipher.encrypt(fileManager.getTextFileRead(), randomKey, alphabet);
                 System.out.println("Файл успешно зашифрован, введите путь к файлу для записи. Пример: C:/files/text.txt");
                 String pathWriteEncryptText = Validator.filePath();
                 fileManager.writeLine(encryptedText, pathWriteEncryptText);
@@ -56,11 +57,13 @@ public class Menu {
                 fileManager.writeLine(decodingText, pathWriteDecodText);
                 System.out.println("Файл успешно записан!");
             } else if (choice == 3) {
-                decodingBrutForce = hacerBrutForce.brutForce(encryptedText, FileManager.getTextFileRead(), alphabet);
+                decodingBrutForce = hacerBrutForce.brutForce(encryptedText, fileManager.getTextFileRead(), alphabet);
                 System.out.println("Введите путь к файлу для записи. Пример: C:/files/text.txt");
                 String path = Validator.filePath();
                 fileManager.writeLine(decodingBrutForce, path);
-            }  else if (choice == 0) {
+            } else if (choice == 4) {
+
+            } else if (choice == 0) {
                 System.out.println("Программа завершена! Всего доброго!");
                 return;
             }
