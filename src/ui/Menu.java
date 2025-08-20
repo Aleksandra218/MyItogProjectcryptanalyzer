@@ -44,26 +44,28 @@ public class Menu {
         while (true) {
             outputMenu();
             int choice = Validator.choiceMenu();
-            if (choice == 1) {
+            switch (choice) {
+                case 1 :
                 encryptedText = caesarCipher.encrypt(fileManager.getTextFileRead(), randomKey, alphabet); //шифруем
                 System.out.println("Файл успешно зашифрован, введите путь к файлу для записи. Пример: C:/files/text.txt");
                 String pathWriteEncryptText = Validator.filePath();
                 fileManager.writeLine(encryptedText, pathWriteEncryptText);
                 System.out.println("Файл успешно записан!");
-            } else if (choice == 2) {
+                break;
+             case 2 :
                 decodingText = caesarCipher.decrypt(encryptedText, randomKey, alphabet); //расшифровываем
                 System.out.println("Файл успешно расшифрован, введите путь к файлу для записи. Пример: C:/files/text.txt");
                 String pathWriteDecodText = Validator.filePath(); //путь к файлу для записи зашифрованного файла
                 fileManager.writeLine(decodingText, pathWriteDecodText);
                 System.out.println("Файл успешно записан!");
-            } else if (choice == 3) {
+                break;
+                case 3 :
                 decodingBrutForce = hacerBrutForce.brutForce(encryptedText, fileManager.getTextFileRead(), alphabet); //метод брутфорс
                 System.out.println("Введите путь к файлу для записи. Пример: C:/files/text.txt");
                 String path = Validator.filePath();
                 fileManager.writeLine(decodingBrutForce, path);
-            } else if (choice == 4) {
-
-            } else if (choice == 0) {
+                break;
+                default :
                 System.out.println("Программа завершена! Всего доброго!");
                 return;
             }

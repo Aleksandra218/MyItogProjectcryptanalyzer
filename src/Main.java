@@ -8,11 +8,11 @@ import java.security.SecureRandom;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        CaesarCipher caesarCipher = new CaesarCipher();
         SecureRandom secureRandom = new SecureRandom();
         FileManager fileManager = new FileManager();
-
-        CaesarCipher caesarCipher = new CaesarCipher();
         HacerBrutForce hacerBrutForce = new HacerBrutForce();
+
         Menu menu = new Menu(caesarCipher, secureRandom, fileManager, hacerBrutForce);
         menu.start();
     }

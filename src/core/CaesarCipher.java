@@ -68,6 +68,7 @@ public class CaesarCipher {
         return encryptedText.toString();
     }
 
+
     //шифруем символ
     private static char getEncryptedChar(int key, char originChar, String alphabet) {
         int originPos = alphabet.indexOf(originChar);
